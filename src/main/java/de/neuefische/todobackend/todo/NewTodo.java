@@ -1,7 +1,6 @@
 package de.neuefische.todobackend.todo;
 
-public record Todo(
-        String id,
+public record NewTodo(
         String description,
         String status
 ) {

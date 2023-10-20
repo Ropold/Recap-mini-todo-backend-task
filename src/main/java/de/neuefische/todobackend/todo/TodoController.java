@@ -1,8 +1,6 @@
 package de.neuefische.todobackend.todo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +17,10 @@ public class TodoController {
     @GetMapping
     public List<Todo> getAllTodos() {
         return todoService.findAllTodos();
+    }
+
+    @PostMapping
+    public Todo postTodo(@RequestBody NewTodo newTodo) {
+        return todoService.addTodo(newTodo);
     }
 }
