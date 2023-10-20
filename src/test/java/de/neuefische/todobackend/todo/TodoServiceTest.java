@@ -3,6 +3,8 @@ package de.neuefische.todobackend.todo;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -69,5 +71,37 @@ class TodoServiceTest {
         verify(todoRepository).save(updatedTodo);
 
         assertEquals(updatedTodo, actual);
+    }
+
+    @Test
+    void getTodoByIdTest_whenValidId_ThenReturnTodo() {
+        //GIVEN
+        String id = "1";
+        Todo todo = new Todo("1", "test-description", TodoStatus.OPEN);
+
+        when(todoRepository.findById(id)).thenReturn(Optional.of(todo));
+
+        //WHEN
+
+        Todo actual = todoService.findTodoById(id);
+
+        //THEN
+        verify(todoRepository).findById(id);
+        assertEquals(todo, actual);
+    }
+
+    @Test
+    void getTodoByIdTest_whenInvalidId_ThenThrowException() {
+        //GIVEN
+        String id = "1";
+
+        when(todoRepository.findById(id)).thenReturn(Optional.empty());
+
+        //WHEN
+
+        assertThrows(NoSuchElementException.class, () -> todoService.findTodoById(id));
+
+        //THEN
+        verify(todoRepository).findById(id);
     }
 }
