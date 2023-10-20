@@ -104,4 +104,18 @@ class TodoServiceTest {
         //THEN
         verify(todoRepository).findById(id);
     }
+
+    @Test
+    void deleteTodo() {
+        //GIVEN
+        String id = "1";
+        doNothing().when(todoRepository).deleteById(id);
+
+        //WHEN
+
+        todoService.deleteTodo(id);
+
+        //THEN
+        verify(todoRepository).deleteById(id);
+    }
 }

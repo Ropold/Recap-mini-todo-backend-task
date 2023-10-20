@@ -124,4 +124,18 @@ class TodoControllerTest {
                 .andExpect(status().isNotFound());
 
     }
+
+
+    @Test
+    @DirtiesContext
+    void deleteTodoById() throws Exception {
+        //GIVEN
+        Todo existingTodo = new Todo("1", "test-description", TodoStatus.OPEN);
+        todoRepository.save(existingTodo);
+
+        //WHEN
+        mockMvc.perform(delete("/api/todo/1"))
+                //THEN
+                .andExpect(status().isOk());
+    }
 }

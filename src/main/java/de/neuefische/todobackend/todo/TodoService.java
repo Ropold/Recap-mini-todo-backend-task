@@ -38,4 +38,8 @@ public class TodoService {
         return todoRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Todo with id: " + id + " not found!"));
     }
+
+    public void deleteTodo(String id) {
+        todoRepository.deleteById(id);
+    }
 }
