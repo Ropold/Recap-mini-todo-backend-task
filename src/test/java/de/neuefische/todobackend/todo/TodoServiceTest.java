@@ -33,7 +33,7 @@ class TodoServiceTest {
     }
 
     @Test
-    void addTodo(){
+    void addTodo() {
         //GIVEN
         NewTodo newTodo = new NewTodo("Test-Description", "OPEN");
         Todo todoToSave = new Todo("Test-Id", "Test-Description", "OPEN");
@@ -49,5 +49,25 @@ class TodoServiceTest {
         verify(idService).randomId();
         verify(todoRepository).save(todoToSave);
         assertEquals(todoToSave, actual);
+    }
+
+    @Test
+    void updateTodo() {
+        //GIVEN
+        String id = "123";
+        UpdateTodo todoToUpdate = new UpdateTodo("test-description", "IN_PROGRESS");
+
+        Todo updatedTodo = new Todo("123", "test-description", "IN_PROGRESS");
+
+        when(todoRepository.save(updatedTodo)).thenReturn(updatedTodo);
+
+        //WHEN
+
+        Todo actual = todoService.updateTodo(todoToUpdate, id);
+
+        //THEN
+        verify(todoRepository).save(updatedTodo);
+
+        assertEquals(updatedTodo, actual);
     }
 }
