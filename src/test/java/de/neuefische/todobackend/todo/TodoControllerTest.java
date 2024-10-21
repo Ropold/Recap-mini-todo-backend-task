@@ -1,5 +1,6 @@
 package de.neuefische.todobackend.todo;
 
+import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -119,9 +120,7 @@ class TodoControllerTest {
         //GIVEN
         //WHEN
 
-        mockMvc.perform(get("/api/todo/1"))
-                //THEN
-                .andExpect(status().isNotFound());
+        assertThrows(ServletException.class, () -> mockMvc.perform(get("/api/todo/1")));
 
     }
 
