@@ -25,7 +25,7 @@ public class ChatGptApiService {
     public String spellCheck(String text) {
         ChatGptResponse body = restClient.post()
                 .uri("https://api.openai.com/v1/chat/completions")
-                .body(new ChatGptRequest("gpt-4o-mini", List.of(new ChatGptMessage("Prüfe die folgende Nachricht auf Rechtschreibfehler. Gibt mir ein json Objekt mit der folgenden Struktur zurück: {original: string, corrected: string}. `" + text + "`", "user")), new ChatGptFormat("json_object")))
+                .body(new ChatGptRequest("gpt-4o-mini", List.of(new ChatGptMessage("user", "Prüfe die folgende Nachricht auf Rechtschreibfehler. Gibt mir ein json Objekt mit der folgenden Struktur zurück: {original: string, corrected: string}. `" + text + "`")), new ChatGptFormat("json_object")))
                 .retrieve()
                 .body(ChatGptResponse.class);
 
