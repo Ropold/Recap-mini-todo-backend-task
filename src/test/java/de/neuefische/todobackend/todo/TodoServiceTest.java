@@ -1,5 +1,7 @@
 package de.neuefische.todobackend.todo;
 
+import de.neuefische.todobackend.todo.model.*;
+import de.neuefische.todobackend.todo.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

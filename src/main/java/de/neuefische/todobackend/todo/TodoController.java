@@ -1,5 +1,8 @@
 package de.neuefische.todobackend.todo;
 
+import de.neuefische.todobackend.todo.model.NewTodo;
+import de.neuefische.todobackend.todo.model.Todo;
+import de.neuefische.todobackend.todo.model.UpdateTodo;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,5 +1,8 @@
 package de.neuefische.todobackend.todo;
 
+import de.neuefische.todobackend.todo.model.Todo;
+import de.neuefische.todobackend.todo.model.TodoStatus;
+import de.neuefische.todobackend.todo.repository.TodoRepository;
 import jakarta.servlet.ServletException;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

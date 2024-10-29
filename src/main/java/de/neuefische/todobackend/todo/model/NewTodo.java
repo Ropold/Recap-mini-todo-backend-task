@@ -1,4 +1,4 @@
-package de.neuefische.todobackend.todo;
+package de.neuefische.todobackend.todo.model;
 
 public record NewTodo(
         String description,
