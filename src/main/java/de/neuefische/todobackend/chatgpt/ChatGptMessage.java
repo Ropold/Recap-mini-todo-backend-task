@@ -1,6 +1,6 @@
 package de.neuefische.todobackend.chatgpt;
 
-public record ChatGPTMessage(
+public record ChatGptMessage(
         String role,
         String content
 ) {

@@ -1,5 +1,6 @@
 package de.neuefische.todobackend.todo;
 
+import de.neuefische.todobackend.chatgpt.ChatGptApiService;
 import de.neuefische.todobackend.todo.model.*;
 import de.neuefische.todobackend.todo.repository.TodoRepository;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,8 @@ class TodoServiceTest {
 
     TodoRepository todoRepository = mock(TodoRepository.class);
     IdService idService = mock(IdService.class);
-    TodoService todoService = new TodoService(todoRepository, idService,);
+    ChatGptApiService chatGptApiService = mock(ChatGptApiService.class);
+    TodoService todoService = new TodoService(todoRepository, idService, chatGptApiService);
 
     @Test
     void findAllTodos() {

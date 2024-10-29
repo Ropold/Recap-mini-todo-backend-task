@@ -1,6 +1,6 @@
 package de.neuefische.todobackend.chatgpt;
 
-public record ChatGPTResponseFormat(
+public record ChatGptFormat(
         String type
 ) {
 }
