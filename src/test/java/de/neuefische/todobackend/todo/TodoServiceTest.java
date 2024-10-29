@@ -15,7 +15,7 @@ class TodoServiceTest {
 
     TodoRepository todoRepository = mock(TodoRepository.class);
     IdService idService = mock(IdService.class);
-    TodoService todoService = new TodoService(todoRepository, idService);
+    TodoService todoService = new TodoService(todoRepository, idService,);
 
     @Test
     void findAllTodos() {

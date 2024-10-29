@@ -4,7 +4,9 @@ import de.neuefische.todobackend.todo.model.NewTodo;
 import de.neuefische.todobackend.todo.model.Todo;
 import de.neuefische.todobackend.todo.model.UpdateTodo;
 import de.neuefische.todobackend.todo.repository.TodoRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -14,8 +16,14 @@ public class TodoService {
 
     private final TodoRepository todoRepository;
     private final IdService idService;
+    public final RestClient restClient;
 
-    public TodoService(TodoRepository todoRepository, IdService idService) {
+
+    public TodoService (@Value("${app.openai-api-key}") String apiKey, RestClient.Builder builder,TodoRepository todoRepository, IdService idService) {
+        this.restClient = builder
+                .baseUrl("https://api.openai.com/v1/chat/completions")
+                .defaultHeader("Authorization", "Bearer " + apiKey)
+                .build();
         this.todoRepository = todoRepository;
         this.idService = idService;
     }
@@ -44,6 +52,8 @@ public class TodoService {
     }
 
     public void deleteTodo(String id) {
+        todoRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Todo with id: " + id + " not found!"));
         todoRepository.deleteById(id);
     }
 }
